@@ -15,7 +15,7 @@ stages:
       demands:
       - npm
 
-    variables:ll
+    variables:
       wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
       dotnetSdkVersion: '3.1.300'
 
