@@ -15,7 +15,7 @@ stages:
       demands:
       - npm
 
-    variables:
+    variables:ll
       wwwrootDir: 'Tailspin.SpaceGame.Web/wwwroot'
       dotnetSdkVersion: '3.1.300'
 
@@ -82,14 +82,14 @@ stages:
 
         # Write terraform.tfvars.
         echo 'resource_group_location = "'$(ResourceGroupLocation)'"' | tee terraform.tfvars
-        # Write backend.tfvars.
-        echo 'resource_group_name = "tf-storage-rg"' | tee backend.tfvars
-        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend.tfvars
-        echo 'container_name = "tfstate"' | tee -a backend.tfvars
-        echo 'key = "terraform.tfstate"' | tee -a backend.tfvars
+        # Write backend-dev.tfvars.
+        echo 'resource_group_name = "tf-storage-rg"' | tee backend-dev.tfvars
+        echo 'storage_account_name = "'$(StorageAccountName)'"' | tee -a backend-dev.tfvars
+        echo 'container_name = "tfstate"' | tee -a backend-dev.tfvars
+        echo 'key = "terraform-dev.tfstate"' | tee -a backend-dev.tfvars
 
         # Initialize Terraform.
-        terraform init -input=false -backend-config="backend.tfvars"
+        terraform init -input=false -backend-config="backend-dev.tfvars"
         # Apply the Terraform plan.
         terraform apply -input=false -auto-approve
 
